@@ -4,6 +4,12 @@
 # parity with the vanilla deployment experience.
 FROM vllm/vllm-openai:latest
 
+# Install the GPT-OSS compatible vLLM build with the recommended CUDA wheels.
+RUN uv pip install --pre "vllm==0.10.1+gptoss" \
+    --extra-index-url https://wheels.vllm.ai/gpt-oss/ \
+    --extra-index-url https://download.pytorch.org/whl/nightly/cu128 \
+    --index-strategy unsafe-best-match
+
 # Default to running the openai/gpt-oss-20b model. This value can be
 # overridden at runtime through the MODEL_NAME environment variable.
 ENV MODEL_NAME="openai/gpt-oss-20b"

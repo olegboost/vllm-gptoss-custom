@@ -2,10 +2,11 @@
 
 This repository contains a Docker build context for running
 `openai/gpt-oss-20b` with the vanilla `vllm-openai` server interface. The
-Dockerfile extends the upstream `vllm/vllm-openai` image and ships an
-entrypoint that converts environment variables into the right CLI options so
-that you can mount locally downloaded models and tune runtime settings without
-rewriting the image.
+Dockerfile extends the upstream `vllm/vllm-openai` image, pre-installs the
+`vllm==0.10.1+gptoss` wheel (from the official GPT-OSS index plus the CUDA
+nightly channel), and ships an entrypoint that converts environment variables
+into the right CLI options so that you can mount locally downloaded models and
+tune runtime settings without rewriting the image.
 
 ### Build the image
 
